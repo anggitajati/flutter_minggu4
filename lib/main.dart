@@ -19,11 +19,11 @@ class _MyAppState extends State<MyApp> {
   TextEditingController input = new TextEditingController();
 
   double _celcius = 0;
-  double _kelvin = 0;
-  double _reamor = 0;
   var listItem = ["Kelvin", "Reamur"];
   String _newValue = "Kelvin";
   double _hasil = 0;
+  List<String> listViewItem = List<String>();
+
   void _konversiSuhu() {
     setState(() {
       _celcius = double.parse(input.text);
@@ -73,16 +73,40 @@ class _MyAppState extends State<MyApp> {
               Hasil(result: _hasil),
               Konvert(konvertHandler: _konversiSuhu),
               Container(
+                margin: EdgeInsets.only(top: 10, bottom: 10),
                 child: Text(
                   "Riwayat Konversi",
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
-              Expanded(child: ListView())
+              Expanded(child: Riwayat(listViewItem: listViewItem))
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class Riwayat extends StatelessWidget {
+  const Riwayat({
+    Key key,
+    @required this.listViewItem,
+  }) : super(key: key);
+
+  final List<String> listViewItem;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: listViewItem.map((String value) {
+        return Container(
+            margin: EdgeInsets.all(10),
+            child: Text(
+              value,
+              style: TextStyle(fontSize: 15),
+            ));
+      }).toList(),
     );
   }
 }
