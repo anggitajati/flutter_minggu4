@@ -4,15 +4,15 @@ import 'package:flutter/services.dart';
 class Input extends StatelessWidget {
   const Input({
     Key key,
-    @required this.etCelcius,
+    @required this.input,
   }) : super(key: key);
 
-  final TextEditingController etCelcius;
+  final TextEditingController input;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: etCelcius,
+      controller: input,
       decoration: InputDecoration(hintText: "Masukan Suhu dalam Celcius"),
       keyboardType: TextInputType.number,
       inputFormatters: <TextInputFormatter>[

@@ -31,6 +31,14 @@ class _MyAppState extends State<MyApp> {
         _hasil = _celcius + 273;
       else
         _hasil = (4 / 5) * _celcius;
+      addItemToList();
+    });
+  }
+
+  void addItemToList() {
+    setState(() {
+      String hasil = _newValue + " : " + _hasil.toStringAsFixed(1);
+      listViewItem.insert(0, hasil);
     });
   }
 
@@ -58,7 +66,7 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Input(etCelcius: input),
+              Input(input: input),
               DropdownButton<String>(
                 items: listItem.map((String value) {
                   return DropdownMenuItem<String>(
@@ -68,7 +76,6 @@ class _MyAppState extends State<MyApp> {
                 }).toList(),
                 value: _newValue,
                 onChanged: dropdownOnChanged,
-                onTap: _konversiSuhu,
               ),
               Hasil(result: _hasil),
               Konvert(konvertHandler: _konversiSuhu),
